@@ -1,0 +1,36 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+<aura:attribute name="newExpenseObject" type="Expense__c" default="{ 'sobjectType': 'Expense__c' }" />
+            <aura:attribute name="options" type="List" 
+                    default="[
+                             {'label':'(USD) US Dollar', 'value':'USD'},
+                             {'label':'(EUR) Euro', 'value':'EUR'},
+                             {'label':'(HUF) Hungarian Forint', 'value':'HUF'}
+                             ]"/> 
+    <lightning:card>    
+    <aura:set attribute="title">
+        Currency Conversion!
+    </aura:set> 
+    <div aura:id="changeIt" class="changethis">Please fill in all fields!</div><br />
+    <lightning:layout horizontalAlign="space">
+        <lightning:layoutItem flexibility="auto" padding="around-small">   
+            <form>
+                <lightning:input type="number" class="slds-text-color_default" name="Amount" label="Amount" value="{!v.newExpenseObject.Amount__c}"/>
+                <lightning:select name="Currency 1" label="Currency 1" class="currency1">
+                 <option value="">choose one...</option>
+ <option value="USD">USD (dollars)</option>
+ <option value="MXN">MXN (pesos)</option>
+ <option value="JPN">JPN (yen)</option>
+</lightning:select>
+                <lightning:select name="Currency 2" label="Currency 2" class="currency2">
+                 <option value="">choose one...</option>
+ <option value="USD">USD (dollars)</option>
+ <option value="MXN">MXN (pesos)</option>
+ <option value="JPN">JPN (yen)</option>
+</lightning:select>
+                <lightning:button label="->" class="slds-m-top--medium" variant="brand" onclick="{!c.applyCSS}"/>
+            </form>
+        </lightning:layoutItem>
+        <lightning:layoutItem flexibility="auto" padding="around-small"></lightning:layoutItem>
+    </lightning:layout>
+</lightning:card>
+</aura:component>
